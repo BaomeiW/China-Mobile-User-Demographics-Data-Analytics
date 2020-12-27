@@ -100,6 +100,9 @@ SELECT * FROM (SELECT device_id, phone_brand, device_model,DENSE_RANK() OVER (PA
 
 ### **There are 104786 duplicated app_id in table app_labels:**
 
+```SQL
+SELECT app_id, COUNT (*) FROM app_labels GROUP BY app_id HAVING COUNT (*) > 1;
+```
 ![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/app_id%20check.png) 
 
 
