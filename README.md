@@ -50,5 +50,5 @@ CREATE TABLE phone_brand(device_id BIGINT, phone_brand VARCHAR, device_model VAR
 
 ### **An execution successful screenshot shown as belown:**
 
-![alt text]()
+![alt text](results/create table execution result.png)
 
