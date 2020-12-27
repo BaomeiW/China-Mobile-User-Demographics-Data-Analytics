@@ -105,6 +105,21 @@ SELECT app_id, COUNT (*) FROM app_labels GROUP BY app_id HAVING COUNT (*) > 1;
 ```
 ![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/app_id%20check.png) 
 
+### **In the realistic data, device_id can only map one type of phone brand with certain model, also primary key can only be unique, so remove the duplicated records:**
+
+```SQL
+------ Delete duplicated rows using an immediate table ------
+
+CREATE TABLE new_phone_brand (LIKE phone_brand);
+INSERT INTO new_phone_brand(device_id, phone_brand, device_model)
+SELECT DISTINCT ON (device_id) device_id, phone_brand, device_model FROM phone_brand;
+SELECT device_id, COUNT(DISTINCT device_id) FROM new_phone_brand GROUP BY device_id;
+
+CREATE TABLE NEW_APP_LABELS (LIKE APP_LABELS);
+INSERT INTO NEW_APP_LABELS (APP_ID, LABEL_ID)
+SELECT DISTINCT ON (APP_ID) APP_ID, LABEL_ID FROM APP_LABELS;
+SELECT APP_ID, COUNT (DISTINCT APP_ID) FROM NEW_APP_LABELS GROUP BY APP_ID;
+```
 
 
 
