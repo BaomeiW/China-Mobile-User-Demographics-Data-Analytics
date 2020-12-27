@@ -45,7 +45,6 @@ CREATE TABLE events(event_id BIGINT, device_id BIGINT, event_time TIMESTAMP, lon
 CREATE TABLE gender_age_train(device_id BIGINT, gender VARCHAR, age INTEGER, age_group VARCHAR);
 CREATE TABLE label_categories(label_id INTEGER, category VARCHAR);
 CREATE TABLE phone_brand(device_id BIGINT, phone_brand VARCHAR, device_model VARCHAR);
-
 ```
 
 ### **An execution successful screenshot shown as belown:**
@@ -61,7 +60,6 @@ COPY events FROM 'E:\PostgreSQL\Mobile data\events.csv' DELIMITER ',' CSV HEADER
 COPY gender_age_train FROM 'E:\PostgreSQL\Mobile data\gender_age_train.csv' DELIMITER ',' CSV HEADER;
 COPY label_categories FROM 'E:\PostgreSQL\Mobile data\label_categories.csv' DELIMITER ',' CSV HEADER;
 COPY phone_brand FROM 'E:\PostgreSQL\Mobile data\phone_brand_device_model.csv' DELIMITER ',' CSV HEADER;
-
 ```
 
 
