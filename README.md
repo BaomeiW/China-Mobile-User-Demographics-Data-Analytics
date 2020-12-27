@@ -175,7 +175,8 @@ FROM phone_train WHERE phone_brand in (SELECT phone_brand FROM new_phone_brand G
 GROUP BY phone_brand, age_group ORDER BY phone_brand DESC, COUNT(*) DESC;
 ```
 ### **An execution successful screenshot shown as below:**
-![]()
+
+![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/most%20popular%20brand%20female%20group.png)
 
 
 
