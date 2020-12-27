@@ -76,7 +76,7 @@ COPY phone_brand FROM 'E:\PostgreSQL\Mobile data\phone_brand_device_model.csv' D
 SELECT label_id, COUNT(*) From label_categories GROUP BY label_id HAVING COUNT(*) > 1;
 SELECT event_id, COUNT(*) From events GROUP BY event_id HAVING COUNT(*) > 1;
 SELECT device_id, COUNT(*) From phone_brand GROUP BY device_id HAVING COUNT(*) > 1;
-SELECT APP_ID, COUNT (*) FROM APP_LABELS GROUP BY APP_ID HAVING COUNT (*) > 1;
+SELECT app_id, COUNT (*) FROM app_labels GROUP BY app_id HAVING COUNT (*) > 1;
 ```
 ### **There are 529 duplicated device_id in table phone_brand:**
 
@@ -115,10 +115,10 @@ INSERT INTO new_phone_brand(device_id, phone_brand, device_model)
 SELECT DISTINCT ON (device_id) device_id, phone_brand, device_model FROM phone_brand;
 SELECT device_id, COUNT(DISTINCT device_id) FROM new_phone_brand GROUP BY device_id;
 
-CREATE TABLE NEW_APP_LABELS (LIKE APP_LABELS);
-INSERT INTO NEW_APP_LABELS (APP_ID, LABEL_ID)
-SELECT DISTINCT ON (APP_ID) APP_ID, LABEL_ID FROM APP_LABELS;
-SELECT APP_ID, COUNT (DISTINCT APP_ID) FROM NEW_APP_LABELS GROUP BY APP_ID;
+CREATE TABLE new_app_labels (LIKE app_labels);
+INSERT INTO new_app_labels (app_id, label_id)
+SELECT DISTINCT ON (app_id) app_id, label_id FROM app_labels;
+SELECT app_id, COUNT (DISTINCT app_id) FROM new_app_labels GROUP BY app_id;
 ```
 ### **Add primary key to existing tables:**
 
@@ -126,7 +126,7 @@ SELECT APP_ID, COUNT (DISTINCT APP_ID) FROM NEW_APP_LABELS GROUP BY APP_ID;
 ALTER TABLE new_phone_brand ADD PRIMARY KEY (device_id);
 ALTER TABLE label_categories ADD PRIMARY KEY (label_id);
 ALTER TABLE events ADD PRIMARY KEY (event_id);
-ALTER TABLE NEW_APP_LABELS ADD PRIMARY KEY (APP_ID);
+ALTER TABLE new_app_labels ADD PRIMARY KEY (app_id);
 ```
 
 ### **Explore tables (check user demographics such as gender, age, age_group in the training samples, etc.):**
@@ -177,6 +177,49 @@ GROUP BY phone_brand, age_group ORDER BY phone_brand DESC, COUNT(*) DESC;
 ### **An execution successful screenshot shown as below:**
 
 ![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/most%20popular%20brand%20female%20group.png)
+
+### **Favorite App**
+
+```SQL
+SELECT app_id, COUNT(*) FROM app_events
+WHERE is_installed = '1' AND is_active = '1'
+GROUP BY app_id ORDER BY COUNT(*) DESC;
+
+SELECT app_events.app_id, a.category, COUNT(app_events.is_active) FROM app_events
+JOIN (SELECT new_app_labels.app_id, label_categories.category FROM new_app_labels
+LEFT JOIN label_categories ON new_app_labels.label_id = label_categories.label_id) AS a ON app_events.app_id = a.app_id
+GROUP BY app_events.app_id, a.category ORDER BY COUNT(app_events.is_active) DESC
+LIMIT 10;
+```
+
+![]()
+
+### **Export result data to csv files and visualize the results by tableau:**
+
+```SQL
+COPY (SELECT gender, COUNT(*) FROM gender_age_train GROUP BY gender) TO 'E:\PostgreSQL\Mobile data\results\gender_ratio.csv' DELIMITER ',' CSV HEADER; 
+COPY (SELECT age_group, COUNT(*) FROM gender_age_train GROUP BY age_group  
+ORDER BY age_group, COUNT(*) DESC) TO 'E:\PostgreSQL\Mobile data\results\age_group.csv' DELIMITER ',' CSV HEADER;
+
+COPY (SELECT gender, phone_brand, COUNT(*), ROW_NUMBER() OVER (PARTITION BY gender ORDER BY COUNT(*) DESC) AS row_num_rank FROM phone_train GROUP BY gender, phone_brand
+ORDER BY gender, COUNT(*) DESC) TO 'E:\PostgreSQL\Mobile data\results\gender_brand.csv' DELIMITER ',' CSV HEADER;
+
+COPY (SELECT phone_brand, device_model, COUNT(*) FROM new_phone_brand GROUP BY phone_brand, device_model
+ORDER BY COUNT(*) DESC, phone_brand LIMIT 100) TO 'E:\PostgreSQL\Mobile data\results\brand_model.csv' DELIMITER ',' CSV HEADER;
+
+COPY (SELECT phone_brand, COUNT(*) FROM new_phone_brand GROUP BY phone_brand 
+ORDER BY COUNT(*) DESC LIMIT 10) TO 'E:\PostgreSQL\Mobile data\results\brand.csv' DELIMITER ',' CSV HEADER;
+
+COPY (SELECT age, COUNT(*) FROM gender_age_train GROUP BY age ORDER BY COUNT(*) DESC) TO 'E:\PostgreSQL\Mobile data\results\age.csv' DELIMITER ',' CSV HEADER;
+
+COPY (SELECT phone_brand, age_group, COUNT(*) as population_users, ROW_NUMBER() OVER (PARTITION BY phone_brand ORDER BY COUNT(*) DESC) AS rank FROM phone_train WHERE phone_brand IN (SELECT phone_brand FROM new_phone_brand GROUP BY phone_brand ORDER BY COUNT(*) DESC LIMIT 10)
+GROUP BY phone_brand, age_group ORDER BY phone_brand DESC, COUNT(*) DESC) TO 'E:\PostgreSQL\Mobile data\results\age_brand.csv' DELIMITER ',' CSV HEADER;
+
+COPY (SELECT phone_brand, device_model, COUNT(*) AS num_users, ROW_NUMBER() OVER (PARTITION BY phone_brand ORDER BY COUNT(*) DESC) AS rank FROM new_phone_brand 
+WHERE phone_brand in (SELECT phone_brand FROM new_phone_brand GROUP BY phone_brand ORDER BY COUNT(*) DESC LIMIT 3)
+GROUP BY phone_brand, device_model HAVING COUNT(*) > 700
+ORDER BY phone_brand) TO 'E:\PostgreSQL\Mobile data\results\brand_model.csv' DELIMITER ',' CSV HEADER;
+```
 
 
 
