@@ -192,7 +192,7 @@ GROUP BY app_events.app_id, a.category ORDER BY COUNT(app_events.is_active) DESC
 LIMIT 10;
 ```
 
-![]()
+![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/favorite%20app.png)
 
 ### **Export result data to csv files and visualize the results by tableau:**
 
