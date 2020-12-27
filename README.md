@@ -30,7 +30,7 @@ sample_submission.csv
 
 ### **Create tables for importing data (*first drop tables if exists*):**
 
-```
+```SQL
 DROP TABLE IF EXISTS app_events;
 DROP TABLE IF EXISTS app_labels;
 DROP TABLE IF EXISTS events;
@@ -53,8 +53,8 @@ CREATE TABLE phone_brand(device_id BIGINT, phone_brand VARCHAR, device_model VAR
 
 ### **Import CSV files into tables:**
 
-```
-COPY app_events FROM 'E:\PostgreSQL\Mobile data\app_events.csv' DELIMITER ',' CSV HEADER;
+```SQL
+COPY app_events FROM 'E:\PostgreSQL\Mobile data\app_events.csv' DELIMITER ',' CSV HEADER; 
 COPY app_labels FROM 'E:\PostgreSQL\Mobile data\app_labels.csv' DELIMITER ',' CSV HEADER;
 COPY events FROM 'E:\PostgreSQL\Mobile data\events.csv' DELIMITER ',' CSV HEADER;
 COPY gender_age_train FROM 'E:\PostgreSQL\Mobile data\gender_age_train.csv' DELIMITER ',' CSV HEADER;
