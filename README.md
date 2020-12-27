@@ -50,7 +50,7 @@ CREATE TABLE phone_brand(device_id BIGINT, phone_brand VARCHAR, device_model VAR
 
 ### **An execution successful screenshot shown as belown:**
 
-![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/create%20table%20execution%20result.png)
+![try it](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/create%20table%20execution%20result.png)
 
 
 
