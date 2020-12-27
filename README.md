@@ -88,7 +88,7 @@ SELECT APP_ID, COUNT (*) FROM APP_LABELS GROUP BY APP_ID HAVING COUNT (*) > 1;
 ```SQL
 SELECT device_id, phone_brand, device_model, COUNT(*) FROM phone_brand Group BY (device_id, phone_brand, device_model) HAVING COUNT(*) > 1 ORDER  BY device_id;
 ```
-![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/device_id%20duplicate%201.png)
+![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/device_id%20duplicate%201%20.png)
 
 #### 2. Values are same in device_id and phone_brand (6 records):
 
