@@ -194,7 +194,7 @@ LIMIT 10;
 
 ![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/favorite%20app.png)
 
-### **Export result data to csv files and visualize the results by tableau:**
+### **Export result data to csv files and visualize the results by *tableau*:**
 
 ```SQL
 COPY (SELECT gender, COUNT(*) FROM gender_age_train GROUP BY gender) TO 'E:\PostgreSQL\Mobile data\results\gender_ratio.csv' DELIMITER ',' CSV HEADER; 
