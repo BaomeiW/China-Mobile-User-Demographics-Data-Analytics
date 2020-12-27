@@ -2,11 +2,9 @@
 
 ## **Introduction:**
 
-
-
 The objective of this project is to find the most popular phone brands and device models in gender and age groups.
 
-Data source:
+## **Data source:**
 
 https://www.kaggle.com/chinapage/china-mobile-user-gemographics
 
@@ -21,10 +19,9 @@ label_categories.csv
 phone_brand_device_model.csv
 sample_submission.csv
 
-Abstract:
+## **Abstract:**
 
 1. Review datasets, find out the relationships between datasets.
 2. Create tables, import raw data.
 3. Clean data, set PK, FK constrains for tables.
 4. implement data analysis.
-uii
