@@ -30,7 +30,8 @@ sample_submission.csv
 
 ### **Drop tables if exists:**
 
-`DROP TABLE IF EXISTS app_events;
+```
+DROP TABLE IF EXISTS app_events;
 
 DROP TABLE IF EXISTS app_labels;
 
@@ -42,4 +43,5 @@ DROP TABLE IF EXISTS label_categories;
 
 DROP TABLE IF EXISTS phone_brand;
 
-DROP TABLE IF EXISTS new_phone_brand;`
+DROP TABLE IF EXISTS new_phone_brand;
+```
