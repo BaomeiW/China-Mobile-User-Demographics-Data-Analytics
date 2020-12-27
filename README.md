@@ -45,3 +45,20 @@ DROP TABLE IF EXISTS phone_brand;
 
 DROP TABLE IF EXISTS new_phone_brand;
 ```
+
+### **Create tables to get ready for importing data:**
+
+```
+CREATE TABLE app_events(event_id BIGINT, app_id BIGINT, is_installed VARCHAR, is_active VARCHAR);
+
+CREATE TABLE app_labels(app_id BIGINT, label_id INTEGER);
+
+CREATE TABLE events(event_id BIGINT, device_id BIGINT, event_time TIMESTAMP, longitude NUMERIC, latitude NUMERIC);
+
+CREATE TABLE gender_age_train(device_id BIGINT, gender VARCHAR, age INTEGER, age_group VARCHAR);
+
+CREATE TABLE label_categories(label_id INTEGER, category VARCHAR);
+
+CREATE TABLE phone_brand(device_id BIGINT, phone_brand VARCHAR, device_model VARCHAR);
+```
+
