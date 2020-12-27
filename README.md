@@ -151,7 +151,7 @@ GROUP BY phone_brand, device_model having count(*) > 700 ORDER BY phone_brand;
 ```
 ### **An execution successful screenshot shown as below:**
 
-![]()
+![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/most%20popular%20brands.png)
 
 
 
