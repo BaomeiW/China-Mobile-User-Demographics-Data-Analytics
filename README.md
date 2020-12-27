@@ -62,6 +62,10 @@ COPY label_categories FROM 'E:\PostgreSQL\Mobile data\label_categories.csv' DELI
 COPY phone_brand FROM 'E:\PostgreSQL\Mobile data\phone_brand_device_model.csv' DELIMITER ',' CSV HEADER;
 ```
 
+### **An execution successful screenshot shown as belown:**
+
+![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/import%20data%20execution%20result%20.png)
+
 
 
 
