@@ -68,7 +68,7 @@ COPY phone_brand FROM 'E:\PostgreSQL\Mobile data\phone_brand_device_model.csv' D
 
 ### **Design relational database with ERD shown as below:**
 
-![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/ER%20Diagram.png)
+![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/ERD.png)
 
 ### **Check duplicated rows to make sure primary key has unique value, and preprocess data if necessary:**
 
