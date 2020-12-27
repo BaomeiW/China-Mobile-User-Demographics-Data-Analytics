@@ -28,7 +28,7 @@ sample_submission.csv
 
 ## **All SQL queries for this project is shown below:**
 
-### **Create tables for importing data (*first drop tables if exists*):**
+### **Create tables for importing data (*first drop table if exists*):**
 
 ```SQL
 DROP TABLE IF EXISTS app_events;
@@ -65,6 +65,8 @@ COPY phone_brand FROM 'E:\PostgreSQL\Mobile data\phone_brand_device_model.csv' D
 ### **An execution successful screenshot shown as below:**
 
 ![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/import%20data%20execution%20result%20.png)
+
+
 
 
 
