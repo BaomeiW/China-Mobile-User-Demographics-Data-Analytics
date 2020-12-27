@@ -66,7 +66,7 @@ COPY phone_brand FROM 'E:\PostgreSQL\Mobile data\phone_brand_device_model.csv' D
 
 ![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/import%20data%20execution%20result%20.png)
 
-### **Design relational database with ERD shown as below:**
+### **Design relational database with ERD:**
 
 ![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/ERD.png)
 
