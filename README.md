@@ -50,9 +50,19 @@ CREATE TABLE phone_brand(device_id BIGINT, phone_brand VARCHAR, device_model VAR
 
 ### **An execution successful screenshot shown as belown:**
 
-![try it](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/create%20table%20execution%20result.png)
+![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/create%20table%20execution%20result.png)
 
+### **Import CSV files into tables:**
 
+```
+COPY app_events FROM 'E:\PostgreSQL\Mobile data\app_events.csv' DELIMITER ',' CSV HEADER;
+COPY app_labels FROM 'E:\PostgreSQL\Mobile data\app_labels.csv' DELIMITER ',' CSV HEADER;
+COPY events FROM 'E:\PostgreSQL\Mobile data\events.csv' DELIMITER ',' CSV HEADER;
+COPY gender_age_train FROM 'E:\PostgreSQL\Mobile data\gender_age_train.csv' DELIMITER ',' CSV HEADER;
+COPY label_categories FROM 'E:\PostgreSQL\Mobile data\label_categories.csv' DELIMITER ',' CSV HEADER;
+COPY phone_brand FROM 'E:\PostgreSQL\Mobile data\phone_brand_device_model.csv' DELIMITER ',' CSV HEADER;
+
+```
 
 
 
