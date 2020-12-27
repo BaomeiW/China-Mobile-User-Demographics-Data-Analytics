@@ -140,7 +140,7 @@ SELECT longitude,latitude, COUNT(*) FROM events GROUP BY (longitude, latitude) O
 SELECT event_time, COUNT(*) FROM events GROUP BY event_time ORDER BY COUNT(*) DESC;
 ```
 
-### **MOst popular phone brands and device models:**
+### **Most popular phone brands and device models:**
 
 ```SQL
 SELECT phone_brand, COUNT(*) FROM new_phone_brand GROUP BY phone_brand ORDER BY COUNT(*) DESC LIMIT 10;
@@ -152,6 +152,30 @@ GROUP BY phone_brand, device_model having count(*) > 700 ORDER BY phone_brand;
 ### **An execution successful screenshot shown as below:**
 
 ![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/most%20popular%20brands.png)
+
+### **Most popular phone brand and phone model for gender, age, and age group:**
+
+```SQL
+SELECT n.gender, n.phone_brand, COUNT(*),  ROW_NUMBER() OVER (PARTITION BY n.gender ORDER BY COUNT(*) DESC) AS row_num
+FROM (SELECT gender_age_train.device_id, gender, age, age_group, phone_brand, device_model FROM gender_age_train
+LEFT JOIN new_phone_brand ON gender_age_train.device_id = new_phone_brand.device_id) AS n
+GROUP BY n.gender, n.phone_brand ORDER BY n.gender, COUNT(*) DESC
+LIMIT 10;
+
+CREATE VIEW phone_train AS 
+SELECT gender_age_train.device_id, gender, age, age_group, phone_brand, device_model FROM gender_age_train
+LEFT JOIN new_phone_brand ON gender_age_train.device_id = new_phone_brand.device_id
+
+SELECT gender, phone_brand, COUNT(*), ROW_NUMBER() OVER (PARTITION BY gender ORDER BY COUNT(*) DESC) AS row_num_rank
+FROM phone_train GROUP BY gender, phone_brand
+ORDER BY gender, COUNT(*) DESC;
+
+SELECT phone_brand, age_group, COUNT(*) as population_users, ROW_NUMBER() OVER (PARTITION BY phone_brand ORDER BY COUNT(*) DESC) AS rank
+FROM phone_train WHERE phone_brand in (SELECT phone_brand FROM new_phone_brand GROUP BY phone_brand ORDER BY COUNT(*) DESC LIMIT 3)
+GROUP BY phone_brand, age_group ORDER BY phone_brand DESC, COUNT(*) DESC;
+```
+### **An execution successful screenshot shown as below:**
+![]()
 
 
 
