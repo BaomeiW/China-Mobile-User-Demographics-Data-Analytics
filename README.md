@@ -82,16 +82,19 @@ SELECT APP_ID, COUNT (*) FROM APP_LABELS GROUP BY APP_ID HAVING COUNT (*) > 1;
 
 ![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/device_id%20check.png)
 
-### **There are 104786 duplicated app_id in table app_labels:**
-
-![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/app_id%20check.png) 
-
 ### **Found two types of duplicates for device_id:**
 #### 1. Values are same in all columns:
 
 ```SQL
 SELECT device_id, phone_brand, device_model, COUNT(*) FROM phone_brand Group BY (device_id, phone_brand, device_model) HAVING COUNT(*) > 1 ORDER  BY device_id;
 ```
+
+
+### **There are 104786 duplicated app_id in table app_labels:**
+
+![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/app_id%20check.png) 
+
+
 ![]()
 
 ```SQL
