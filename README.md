@@ -26,7 +26,7 @@ sample_submission.csv
 3. Clean data, set PK, FK constrains for tables.
 4. implement data analysis.
 
-## **All SQL queries for this project is shown below:**
+## **All SQL queries for this project shown as below:**
 
 ### **Create tables for importing data (*first drop table if exists*):**
 
