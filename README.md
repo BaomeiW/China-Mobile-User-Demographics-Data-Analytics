@@ -120,6 +120,38 @@ INSERT INTO NEW_APP_LABELS (APP_ID, LABEL_ID)
 SELECT DISTINCT ON (APP_ID) APP_ID, LABEL_ID FROM APP_LABELS;
 SELECT APP_ID, COUNT (DISTINCT APP_ID) FROM NEW_APP_LABELS GROUP BY APP_ID;
 ```
+### **Add primary key to existing tables:**
+
+```SQL
+ALTER TABLE new_phone_brand ADD PRIMARY KEY (device_id);
+ALTER TABLE label_categories ADD PRIMARY KEY (label_id);
+ALTER TABLE events ADD PRIMARY KEY (event_id);
+ALTER TABLE NEW_APP_LABELS ADD PRIMARY KEY (APP_ID);
+```
+
+### **Explore tables (check user demographics such as gender, age, age_group in the training samples, etc.):**
+
+```SQL
+SELECT gender, COUNT(*) FROM gender_age_train GROUP BY gender;
+SELECT age, COUNT(*) FROM gender_age_train GROUP BY age ORDER BY COUNT(*) DESC;
+SELECT age_group, COUNT(*) FROM gender_age_train GROUP BY age_group ORDER BY age_group, COUNT(*) DESC;
+SELECT gender, age, age_group, COUNT(*) FROM gender_age_train GROUP BY gender, age, age_group ORDER BY gender, COUNT(*) DESC;
+SELECT longitude,latitude, COUNT(*) FROM events GROUP BY (longitude, latitude) ORDER BY COUNT(*) DESC;
+SELECT event_time, COUNT(*) FROM events GROUP BY event_time ORDER BY COUNT(*) DESC;
+```
+
+### **MOst popular phone brands and device models:**
+
+```SQL
+SELECT phone_brand, COUNT(*) FROM new_phone_brand GROUP BY phone_brand ORDER BY COUNT(*) DESC LIMIT 10;
+
+SELECT phone_brand, device_model, COUNT(*), ROW_NUMBER() OVER (PARTITION BY phone_brand ORDER BY COUNT(*) DESC) as rank FROM new_phone_brand 
+WHERE phone_brand in (SELECT phone_brand FROM new_phone_brand GROUP BY phone_brand ORDER BY COUNT(*) DESC LIMIT 3)
+GROUP BY phone_brand, device_model having count(*) > 700 ORDER BY phone_brand;
+```
+### **An execution successful screenshot shown as below:**
+
+![]()
 
 
 
