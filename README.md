@@ -70,6 +70,15 @@ COPY phone_brand FROM 'E:\PostgreSQL\Mobile data\phone_brand_device_model.csv' D
 
 ![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/ER%20Diagram.png)
 
+### **Check duplicated rows to make sure primary key has unique value, and preprocess data if necessary:**
+
+```SQL
+SELECT label_id, COUNT(*) From label_categories GROUP BY label_id HAVING COUNT(*) > 1;
+SELECT event_id, COUNT(*) From events GROUP BY event_id HAVING COUNT(*) > 1;
+SELECT device_id, COUNT(*) From phone_brand GROUP BY device_id HAVING COUNT(*) > 1;
+SELECT APP_ID, COUNT (*) FROM APP_LABELS GROUP BY APP_ID HAVING COUNT (*) > 1;
+```
+
 
 
 
