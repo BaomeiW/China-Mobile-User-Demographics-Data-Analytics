@@ -25,3 +25,21 @@ sample_submission.csv
 2. Create tables, import raw data.
 3. Clean data, set PK, FK constrains for tables.
 4. implement data analysis.
+
+## **All SQL queries for this project is shown below:**
+
+### **Drop tables if exists:**
+
+`DROP TABLE IF EXISTS app_events;
+
+DROP TABLE IF EXISTS app_labels;
+
+DROP TABLE IF EXISTS events;
+
+DROP TABLE IF EXISTS gender_age_train;
+
+DROP TABLE IF EXISTS label_categories;
+
+DROP TABLE IF EXISTS phone_brand;
+
+DROP TABLE IF EXISTS new_phone_brand;`
