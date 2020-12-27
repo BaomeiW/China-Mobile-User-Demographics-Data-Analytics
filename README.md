@@ -78,6 +78,9 @@ SELECT event_id, COUNT(*) From events GROUP BY event_id HAVING COUNT(*) > 1;
 SELECT device_id, COUNT(*) From phone_brand GROUP BY device_id HAVING COUNT(*) > 1;
 SELECT APP_ID, COUNT (*) FROM APP_LABELS GROUP BY APP_ID HAVING COUNT (*) > 1;
 ```
+### **There are 529 duplicated device_id in table phone_brand**
+
+![](https://github.com/BaomeiW/China-Mobile-User-Demographics-Data-Analytics/blob/main/results/device_id%20check.png)
 
 
 
